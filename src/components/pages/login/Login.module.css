@@ -1,0 +1,103 @@
+.login {
+  width: 90%;
+  max-width: 40rem;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+.control {
+  margin: 1rem 0;
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+}
+
+.control label,
+.control input {
+  display: block;
+}
+
+.control label {
+  font-weight: bold;
+  flex: 1;
+  color: #464646;
+  margin-bottom: 0.5rem;
+}
+
+.control input {
+  flex: 3;
+  font: inherit;
+  padding: 0.35rem 0.35rem;
+  border-radius: 6px;
+  border: 1px solid #CBDBEA;
+}
+
+/* .control input:focus {
+  outline: none;
+  border-color: #CBDBEA;
+  background: #FFFFFF;
+} */
+
+.control.invalid input {
+  border-color: #F65B2A;
+  background: #FFFFFF;
+}
+
+.actions {
+  text-align: center;
+}
+
+.btn {
+  color: #FFFFFF;
+  width: 314px;
+  height: 45px;
+  background: #329C89;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.toggleBtn{
+  display: block;
+  background:none;
+  border:none;
+  margin:0;
+  padding:0;
+  cursor: pointer;
+  color: #1A3B5854;
+}
+.toggleBtnActive{
+  display: block;
+  background:none;
+  border:none;
+  margin:0;
+  padding:0;
+  cursor: pointer;
+  color: #1A3B58;
+}
+
+.container {
+  display: flex;
+}
+
+.border {
+  flex: 1;
+  margin: 10px;
+  background: #FFFFFF;
+  border: 2px solid rgba(26, 59, 88, 0.24);
+  border-radius: 65px;
+  padding: 10% 5%;
+}
+
+.noteImg {
+  flex: 1;
+  margin: 10px;
+  height: 420px;
+  width: 477px;
+  padding: 60px;
+}
+
+@media (min-width: 768px) {
+  .control {
+    align-items: center;
+  }
+
+}
