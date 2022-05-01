@@ -26,12 +26,12 @@ const LogoutPopup = (props) => {
 
           <div className="popup-footer mt-40">
             <div className="btn-group">
-              <button onClick={props.handleClose} className="dark-btn-outline">
+              <button onClick={props.handleClose} className="cancelBtn">
                 cancel
               </button>
               <button
                 onClick={props.onLogout}
-                className="secondary-btn"
+                className="logoutBtn"
               >
                 Logout
               </button>

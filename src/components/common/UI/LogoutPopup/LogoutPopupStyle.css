@@ -1,34 +1,62 @@
+.logoutBtn {
+  background: #329C89;
+  border-radius: 22px;
+  padding: 7px;
+  border: none;
+  width: 70%;
+  margin: auto;
+  margin-top: 5px;
+}
+
+.cancelBtn {
+  background: #BEBEBE;
+  border-radius: 22px;
+  padding: 7px;
+  border: none;
+  width: 70%;
+  margin: auto;
+  margin-top: 5px;
+}
+
 .delete-poup {
   width: 420px;
   height: 230px;
   padding: 20px;
 }
-.delete-poup .popup-header{
+
+.delete-poup .popup-header {
   padding: 0;
 }
-.delete-poup .popup-heading{
+
+.delete-poup .popup-heading {
   padding-bottom: 10px;
 }
-.delete-poup .popup-footer{
+
+.delete-poup .popup-footer {
   padding: 0;
 }
-.delete-poup .popup-header-body{
+
+.delete-poup .popup-header-body {
   padding: 20px 0 0;
 }
+
 .popup-footer .btn-group {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
 }
+
 .popup-footer .btn-group .danger-btn {
   width: auto;
   text-transform: uppercase;
   font-size: 14px;
 }
- .dark-btn-outline {
+
+.dark-btn-outline {
   text-transform: uppercase;
   font-size: 14px;
 }
+
 .popup-outer {
   display: flex;
   z-index: 3500;
