@@ -72,16 +72,14 @@
     border-radius: 7px;  
     cursor: pointer;
 }
-.addbutton{
-    background: #329C89;
-    color: #ffffff;
+.addbutton {
+    /* color: #ffffff; */
     border-radius: 22px;
     padding: 7px;
     border: none;
-    width:70%;
-    margin:auto;
-    margin-top:5px;
-
+    /* width: 70%; */
+    margin: auto;
+    margin-top: 5px;
 }
 .card{
     padding: 15px 20px;

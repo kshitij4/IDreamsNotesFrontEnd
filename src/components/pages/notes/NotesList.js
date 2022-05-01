@@ -137,8 +137,8 @@ const NotesList = () => {
                       >
                         <input className={classes.inputText} type='text' value={todo.title} placeholder='Enter Title' onChange={e => setTitle(e, todo._id)} />
                         <input className={classes.inputText} type='text' value={todo.description} placeholder='Description' onChange={e => setDesc(e, todo._id)} />
-                        {idx !== todoNotes.length - 1 && (<button className={classes.addbutton} onClick={() => updateStatus(todo._id, 'inprogress')}>Move to progress</button>)}
-                        {/* {idx !== todoNotes.length -1 && (<p><i onClick={() => updateStatus(todo._id,'inprogress')} class="arrow right"></i></p>)} */}
+                        {idx !== todoNotes.length - 1 && (<button className={classes.addbutton} onClick={() => updateStatus(todo._id, 'inprogress')}><img src='arrowRight.png'/></button>)}
+                        {/* {idx !== todoNotes.length -1 && (<p><i onClick={() => updateStatus(todo._id,'inprogress')} class="arrowRight right"></i></p>)} */}
 
                       </div>
                     )
@@ -173,7 +173,7 @@ const NotesList = () => {
                           >
                             <input className={classes.inputText} value={inProgressEle.title} type='text' placeholder='Enter Your Task Name' />
                             <input className={classes.inputText} value={inProgressEle.description} type='text' placeholder='Description' />
-                            <button className={classes.addbutton} onClick={() => updateStatus(inProgressEle._id, 'completed')}>Move to complete </button>
+                            <button className={classes.addbutton} onClick={() => updateStatus(inProgressEle._id, 'completed')}><img src='arrowRight.png'/> </button>
                           </div>
                         ))
                       }

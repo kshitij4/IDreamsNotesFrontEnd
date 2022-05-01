@@ -21,17 +21,6 @@ const passReducer = (state, action) => {
   return { value: '', isValid: false };
 }
 
-const phoneReducer = (state, action) => {
-  let re = new RegExp(/^[+]*[0-9]{10,}$/);
-  if (action.type === "INPUT") {
-    return { value: action.val, isValid: re.test(action.val) };
-  }
-  if (action.type === "BLUR") {
-    return { value: state.value, isValid: re.test(state.value) };
-  }
-  return { value: "", isValid: false };
-};
-
 
 const Login = (props) => {
 
@@ -39,24 +28,22 @@ const Login = (props) => {
   const [formIsValid, setFormIsValid] = useState(false);
   const [emailState, emailDispacher] = useReducer(emailReducer, { value: '', isValid: null });
   const [passState, passDispacher] = useReducer(passReducer, { value: '', isValid: null });
-  const [phoneState, phoneDispacher] = useReducer(phoneReducer, { value: "", isValid: null });
 
   const { isValid: isEmailValid } = emailState;
   const { isValid: isPassValid } = passState;
-  const { isValid: isPhoneValid } = phoneState;
 
   const fname = useRef();
   const lname = useRef();
 
   useEffect(() => {
     const id = setTimeout(() => {
-      setFormIsValid(isEmailValid && isPassValid && isPhoneValid);
+      setFormIsValid(isEmailValid && isPassValid);
     }, 500);
 
     return () => {
       clearTimeout(id);
     }
-  }, [isEmailValid, isPassValid, isPhoneValid]);
+  }, [isEmailValid, isPassValid]);
 
   const emailChangeHandler = (event) => {
     emailDispacher({ type: 'INPUT', val: event.target.value });
@@ -66,20 +53,12 @@ const Login = (props) => {
     passDispacher({ type: 'INPUT', val: event.target.value });
   };
 
-  const phoneChangeHandler = (event) => {
-    phoneDispacher({ type: "INPUT", val: event.target.value });
-  };
-
   const validateEmailHandler = () => {
     emailDispacher({ type: 'BLUR' });
   };
 
   const validatePasswordHandler = () => {
     emailDispacher({ type: 'BLUR' });
-  };
-
-  const validatePhoneHandler = () => {
-    phoneDispacher({ type: "BLUR" });
   };
 
   const submitHandler = (event) => {
@@ -91,7 +70,6 @@ const Login = (props) => {
         firstname: fname.current.value,
         lastname: lname.current.value,
         email: emailState.value,
-        phone: phoneState.value,
         password: passState.value,
       });
     }
