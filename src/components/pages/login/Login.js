@@ -80,9 +80,11 @@ const Login = (props) => {
     <div className={classes.container}>
       <img src='noteImg.svg' alt='notesLogo' className={classes.noteImg} />
       <div className={classes.border}>
+        <div className={classes.loginDiv}>
         <p className = {`${isLogin ? classes.toggleBtnActive : classes.toggleBtn}`} onClick={() => setIsLogin(true)}>Log In</p>
         <p className = {`${!isLogin ? classes.toggleBtnActive : classes.toggleBtn}`} onClick={() => setIsLogin(false)}>Sign up</p>
-        {isLogin ? (<form onSubmit={submitHandler}>
+        </div>
+        {isLogin ? (<form onSubmit={submitHandler} className={classes.form}>
 
           <div
             className={`${classes.control} ${emailState.isValid === false ? classes.invalid : ''
@@ -120,8 +122,8 @@ const Login = (props) => {
             </button>
           </div>
         </form>) :
-          (<form onSubmit={submitHandler}>
-            <div className={classes.control}>
+          (<form onSubmit={submitHandler} className={classes.form}>
+            <div className={classes.control} >
               <input placeholder='First Name' type="name" id="fname" ref={fname} />
             </div>
             <div className={classes.control}>
@@ -140,7 +142,9 @@ const Login = (props) => {
             </div>
           </form>)}
 
+        <div className={classes.remember}>
         <input type='checkbox' className={classes.remberMe} /> Remember Me
+        </div>
       </div>
     </div>
   );
