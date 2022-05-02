@@ -1,12 +1,12 @@
 import axios from "axios";
 
-const baseUrl = process.env.REACT_APP_BASE_URL;
+const baseUrl = 'http://localhost:8000';
 
 export const adminApi = {
 	register: (userData) => {
-		return axios.post(`http://localhost:8000/user/registerUser`, userData);
+		return axios.post(`${baseUrl}/user/registerUser`, userData);
 	},
 	login: (userData) => {
-		return axios.post(`http://localhost:8000/user/login`, userData);
+		return axios.post(`${baseUrl}/user/login`, userData);
 	},
 };

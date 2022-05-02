@@ -1,4 +1,5 @@
 import React, { useEffect, useReducer, useRef, useState } from 'react';
+import { adminApi } from "../../../utils/admin.api";
 
 import classes from './Login.module.css';
 const emailReducer = (state, action) => {
@@ -58,15 +59,21 @@ const Login = (props) => {
   };
 
   const validatePasswordHandler = () => {
-    emailDispacher({ type: 'BLUR' });
+    passDispacher({ type: 'BLUR' });
   };
+
+  const clearValues = () => {
+    emailDispacher({ value: '', isValid: null });
+    passDispacher({ value: '', isValid: null });
+  }
+
 
   const submitHandler = (event) => {
     event.preventDefault();
     if (isLogin) {
-      props.onLogin(emailState.value, passState.value);
+      loginHandler(emailState.value, passState.value);
     } else {
-      props.onRegister({
+      registerHandler({
         firstname: fname.current.value,
         lastname: lname.current.value,
         email: emailState.value,
@@ -76,13 +83,45 @@ const Login = (props) => {
 
   };
 
+  //apis
+
+  const loginHandler = async (email, password) => {
+    try {
+      const res = await adminApi.login({ email, password });
+      if (res.data.isSuccess) {
+        props.onSetLoggedIn(true);
+          localStorage.setItem("token", res.data.token);
+          localStorage.setItem("userName", res.data.Data.userName);
+        clearValues();
+      } else {
+        console.log(res.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const registerHandler = async (userData) => {
+    try {
+      const res = await adminApi.register(userData);
+      console.log(res);
+      if (res.data.isSuccess) {
+        clearValues();
+      } else {
+        console.log(res.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className={classes.container}>
       <img src='noteImg.svg' alt='notesLogo' className={classes.noteImg} />
       <div className={classes.border}>
         <div className={classes.loginDiv}>
-        <p className = {`${isLogin ? classes.toggleBtnActive : classes.toggleBtn}`} onClick={() => setIsLogin(true)}>Log In</p>
-        <p className = {`${!isLogin ? classes.toggleBtnActive : classes.toggleBtn}`} onClick={() => setIsLogin(false)}>Sign up</p>
+          <p className={`${isLogin ? classes.toggleBtnActive : classes.toggleBtn}`} onClick={() => { setIsLogin(true); clearValues() }}>Log In</p>
+          <p className={`${!isLogin ? classes.toggleBtnActive : classes.toggleBtn}`} onClick={() => { setIsLogin(false); clearValues() }}>Sign up</p>
         </div>
         {isLogin ? (<form onSubmit={submitHandler} className={classes.form}>
 
@@ -91,8 +130,7 @@ const Login = (props) => {
               }`}
           >
             <h2>To Continue</h2>
-            <p style={{color: '#999999'}}>We need your Name & Email </p>
-            {/* <label htmlFor="email">E-Mail</label> */}
+            <p style={{ color: '#999999' }}>We need your Name & Email </p>
             <input
               type="email"
               id="email"
@@ -106,7 +144,6 @@ const Login = (props) => {
             className={`${classes.control} ${passState.isValid === false ? classes.invalid : ''
               }`}
           >
-            {/* <label htmlFor="password">Password</label> */}
             <input
               type="password"
               id="password"
@@ -141,10 +178,6 @@ const Login = (props) => {
               </button>
             </div>
           </form>)}
-
-        <div className={classes.remember}>
-        <input type='checkbox' className={classes.remberMe} /> Remember Me
-        </div>
       </div>
     </div>
   );
